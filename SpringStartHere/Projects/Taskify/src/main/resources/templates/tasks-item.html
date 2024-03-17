@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+
+<body>
+
+    <li th:fragment="tasksItem(item)" th:classappend="${item.completed} ? 'completed' : ''">
+        <div class="view">
+            <form th:action="@{/toggle/{id}(id=${item.id})}" th:method="put">
+                <input class="toggle" type="checkbox" onchange="this.form.submit()"
+                    th:attrappend="checked=${item.completed} ? true : null">
+
+                <label class="task-title" th:text="${item.title}"></label>
+                <label class="task-description" th:text="${item.description}"></label>
+
+                <th:block th:if="${item.completed}">
+                    <label class="task-completed-date"
+                        th:text="${#temporals.format(item.completedDate, 'dd/MM/yyyy HH:mm:ss')}"></label>
+                </th:block>
+                <th:block th:unless="${item.completed}">
+                    <label class="task-created-date"
+                        th:text="${#temporals.format(item.createdDate, 'dd/MM/yyyy HH:mm:ss')}"></label>
+                </th:block>
+            </form>
+
+            <form th:action="@{/{id}(id=${item.id})}" th:method="delete">
+                <button class="destroy"></button>
+            </form>
+        </div>
+    </li>
+
+</body>
+
+</html>
