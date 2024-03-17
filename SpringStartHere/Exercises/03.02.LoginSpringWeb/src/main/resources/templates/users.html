@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>User List Page</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title mb-4">User List</h2>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th>Favorite Color</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user : ${users}">
+                            <td th:text="${user.username}"></td>
+                            <td th:text="${user.password}"></td>
+                            <td th:style="'color:' + ${user.color}" th:text="${user.color}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="text-center mt-3"><a class="btn btn-primary" th:href="@{/home}">Back to Home</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

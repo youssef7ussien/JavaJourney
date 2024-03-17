@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <title>Home Page</title>
+</head>
+
+<body>
+  <header class="bg-dark text-white text-center py-2 px-4 d-flex justify-content-between align-items-center">
+    <div>
+      <h2>Spring Login App</h2>
+    </div>
+
+    <div>
+      <div th:if="${username != null}">
+        <a class="btn btn-danger" th:href="@{/users/logout}">Logout</a>
+        <a class="btn btn-info" th:href="@{/users/list}">User List</a>
+      </div>
+
+      <div th:unless="${username != null}">
+        <a class="btn btn-primary" th:href="@{/users/login}">Login</a>
+        <a class="btn btn-success" th:href="@{/users/register}">Register</a>
+      </div>
+
+    </div>
+  </header>
+
+  <div class="container mt-4">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title mb-4">Welcome to the Home Page</h2>
+        <div th:if="${username != null}" class="mb-4">
+          <p class="mb-2">Hello, <span th:style="'color:' + ${color}" th:text="${username}"></span>!</p>
+        </div>
+
+        <div th:if="${username != null}" class="mb-4">
+          <p class="mb-2">This is simple login system with spring web.</p>
+        </div>
+
+        <div class="alert alert-info text-center" role="alert">
+          Number of online users: <strong th:text="${onlineUsersCount}"></strong>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

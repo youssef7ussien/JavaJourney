@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+
+<body>
+
+    <h1>Welcome To First Spring Web App!</h1>
+    <p>This is the first Java Spring web app created.</p>
+    <h2>Add New User</h2>
+    <form action="/users" method="post">
+        Name: <input type="text" name="name"><br />
+        Color: <input type="text" name="color"><br />
+        <button type="submit">Add User</button>
+    </form>
+    <h2>Current Users</h2>
+    <table>
+        <tr>
+            <th>User Name</th>
+            <th>User Color</th>
+        </tr>
+        <tr th:each="u: ${users}">
+            <td th:text="${u.name}"></td>
+            <td th:style="'color:' + ${u.color}" th:text="${u.color}"></td>
+        </tr>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+
+<body>
+    <h1>
+        Welcome
+        <span th:style="'color:' + ${color}" th:text="${username}"></span>
+        To First Spring Web App!
+    </h1>
+    <p>This is the first Java Spring web app created.</p>
+</body>
+
+</html>
