@@ -9,7 +9,7 @@ database to store task data.
 
 The project follows the MVC (Model-View-Controller) architecture pattern and is structured as follows:
 
-```python
+```bash
 taskify/
 └── src/
     ├── main/
@@ -59,15 +59,15 @@ taskify/
 
 ## Technologies Used
 
-| Name | Version|
-| ---- | -------|
-| **Java** | `<java.version>17</java.version>` |
-| **Spring Boot** | `<version>3.2.3</version>` |
-| **Spring Data JPA** | `<version>{Let it for Spring Boot}<version>` |
-| **ModelMapping** (for mapping between models and DTOs) | `<version>3.0.0</version>` |
-| **H2 database** | `<version>{Let it for Spring Boot}<version>` |
-| **Thymeleaf** (for server-side rendering) | `<version>{Let it for Spring Boot}<version>` |
-| **Maven** (for dependency management) | `<modelVersion>4.0.0</modelVersion>` |
+| Name                                                   | Version                                      |
+| ------------------------------------------------------ | -------------------------------------------- |
+| **Java**                                               | `<java.version>17</java.version>`            |
+| **Spring Boot**                                        | `<version>3.2.3</version>`                   |
+| **Spring Data JPA**                                    | `<version>{Let it for Spring Boot}<version>` |
+| **ModelMapping** (for mapping between models and DTOs) | `<version>3.0.0</version>`                   |
+| **H2 database**                                        | `<version>{Let it for Spring Boot}<version>` |
+| **Thymeleaf** (for server-side rendering)              | `<version>{Let it for Spring Boot}<version>` |
+| **Maven** (for dependency management)                  | `<modelVersion>4.0.0</modelVersion>`         |
 
 ## Architecture Overview
 
@@ -76,10 +76,12 @@ of the architecture components:
 
 ### Presentation Layer (UI)
 
-The user interface is not the main focus of this project. As a result, the interface has been obtained from
-the "TodoMVC project (<https://todomvc.com>), which provides a clean and responsive design for task management.
-Using the [TodoMVC project](https://todomvc.com) allows the project to focus on learning objectives related to
-backend development and Spring Boot framework implementation.
+The project's main focus is not on the user interface. Therefore, the interface was obtained from the "TodoMVC
+project (<https://todomvc.com>), which provides a clean and responsive design for task management (Certainly,
+I made some modifications to it).
+
+The use of the [TodoMVC project](https://todomvc.com) allows the project to
+focus on the learning objectives related to backend development and Spring Boot framework implementation.
 
 ### Business Logic Layer
 
@@ -90,25 +92,28 @@ tasks.
 ### Data Access Layer
 
 The data access layer consists of repository interfaces (`TaskRepository`) that define methods for interacting
-with the underlying database. Spring Data JPA is used to provide a high-level abstraction over the database,
-making it easier to perform database operations.
+with the underlying database.
+
+Spring Data JPA is used to provide a high-level abstraction over the database, making it easier to perform
+database operations.
 
 ### Database Layer
 
-Taskify uses an H2 in-memory database to store task data. H2 is a lightweight and embeddable database that provides JDBC and JPA support.
+Taskify uses an H2 in-memory database to store task data. H2 is a lightweight and embeddable database that
+provides JDBC and JPA support.
 
 #### Database Schema
 
 The schema for the H2 database includes a single table named **'Task'** with the following columns:
 
-| key   | type | description    |
-|:---------------: | :-----: | --------------- |
-| id | BIGINT (Primary Key) | Unique identifier for each task. |
-| title | VARCHAR(255) | Descriptive title of the task. |
-| description | VARCHAR(1000) | Additional details or notes related to the task. |
-| created_date | TIMESTAMP |Timestamp indicating when the task was created. |
-| completed_date | TIMESTAMP | Timestamp indicating when the task was completed. |
-| completed | Boolean | Boolean flag indicating whether the task is completed or not. |
+| key            | type                 | description                                                   |
+| :------------- | :------------------- | ------------------------------------------------------------- |
+| id             | BIGINT (Primary Key) | Unique identifier for each task.                              |
+| title          | VARCHAR(255)         | Descriptive title of the task.                                |
+| description    | VARCHAR(1000)        | Additional details or notes related to the task.              |
+| created_date   | TIMESTAMP            | Timestamp indicating when the task was created.               |
+| completed_date | TIMESTAMP            | Timestamp indicating when the task was completed.             |
+| completed      | Boolean              | Boolean flag indicating whether the task is completed or not. |
 
 ## Getting Started
 
@@ -120,6 +125,8 @@ To run the Taskify application locally, follow these steps:
 
 The application will be accessible at `http://localhost:8080` and the H2 database will be accessible at
 `http://localhost:8080/h2-console`
+
+## References
 
 ## License
 
