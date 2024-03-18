@@ -77,11 +77,11 @@ of the architecture components:
 ### Presentation Layer (UI)
 
 The project's main focus is not on the user interface. Therefore, the interface was obtained from the "TodoMVC
-project (<https://todomvc.com>), which provides a clean and responsive design for task management (Certainly,
+project (<https://todomvc.com>)", which provides a clean and responsive design for task management (Certainly,
 I made some modifications to it).
 
-The use of the [TodoMVC project](https://todomvc.com) allows the project to
-focus on the learning objectives related to backend development and Spring Boot framework implementation.
+The use of the TodoMVC project) allows the project to focus on the learning objectives related to backend
+development and Spring Boot framework implementation.
 
 ### Business Logic Layer
 
@@ -127,6 +127,12 @@ The application will be accessible at `http://localhost:8080` and the H2 databas
 `http://localhost:8080/h2-console`
 
 ## References
+
+- TodoMVC Project: <https://todomvc.com>
+- Thymeleaf Project: <https://www.thymeleaf.org/doc/tutorials/3.1/usingthymeleaf.html>
+- Spring Docs: <https://docs.spring.io/spring-framework/reference/index.html>
+- Build todo with Spring Boot tutorial: <https://www.wimdeblauwe.com/blog/2021/09/20/todomvc-with-spring-boot-and-thymeleaf-part-1/>
+- H2 Database tutorial: <https://www.baeldung.com/spring-boot-h2-database>
 
 ## License
 
