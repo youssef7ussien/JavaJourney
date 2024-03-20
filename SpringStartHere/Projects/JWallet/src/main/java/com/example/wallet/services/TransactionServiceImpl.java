@@ -16,6 +16,7 @@ import com.example.wallet.exceptions.TransactionNotFoundException;
 import com.example.wallet.models.Transaction;
 import com.example.wallet.repositories.TransactionRepository;
 
+
 @Service
 public class TransactionServiceImpl implements TransactionService {
     private final UserService userService;
