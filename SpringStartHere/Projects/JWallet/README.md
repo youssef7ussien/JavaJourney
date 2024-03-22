@@ -12,7 +12,6 @@
     - [Exposed API Endpoints](#exposed-api-endpoints)
     - [Application Usage](#application-usage)
   - [References](#references)
-  - [License](#license)
 
 The JWallet Application is a Java Spring Boot backend project designed to manage Wallet transactions. It
 utilizes the MySQL database and Spring Data JPA. The project follows the MVC pattern and includes unit tests for
@@ -80,9 +79,9 @@ JWallet/
 | Name                                          | Version                                      |
 | --------------------------------------------- | -------------------------------------------- |
 | **Java**                                      | `<java.version>17</java.version>`            |
-| **Spring Boot**                               | `<version>3.2.3</version>`                   |
+| **Spring Boot**                               | `<version>3.2.4</version>`                   |
 | **Spring Data JPA**                           | `<version>{Let it for Spring Boot}<version>` |
-| **MySql database**                            | `11.3.2-MariaDB (For Arch Linux users)`       |
+| **MySql database**                            | `11.3.2-MariaDB (For Arch Linux users)`      |
 | **mysql-connector-j** (MySQL Driver for Java) | `<version>{Let it for Spring Boot}<version>` |
 | **Maven** (for dependency management)         | `<modelVersion>4.0.0</modelVersion>`         |
 
@@ -147,7 +146,7 @@ To run the JWallet application locally, follow these steps:
 1. Clone this project or repository.
 2. Run MySql server and create your database.
 3. Navigate to the project directory: `cd JWallet`
-4. Run the application: `./mvnw spring-boot:run`
+4. Run the application:
 
     ```bash
     ./mvnw spring-boot:run \
@@ -159,7 +158,7 @@ To run the JWallet application locally, follow these steps:
     ```
 
     If you want to debug this project using the VSCodium (Open Source Binaries of VS Code) editor, you will
-    need to create a `luanch.json' file and add the following code to it:
+    need to create a `luanch.json` file and add the following code to it:
 
     ```json
     {
@@ -181,8 +180,8 @@ To run the JWallet application locally, follow these steps:
     }
     ```
 
-    Make sure to replace {your_spring_datasource_url}, {your_spring_datasource_username}, and
-    {your_spring_datasource_password} with your actual MySQL server values.
+    Make sure to replace `{your_spring_datasource_url}`, `{your_spring_datasource_username}`, and
+    `{your_spring_datasource_password}` with your actual MySQL server values.
 
 The application will be accessible by default at `http://localhost:8080`.
 
@@ -268,6 +267,7 @@ curl http://localhost:8080/api/transactions -s | jq
   - Github for source code: <https://github.com/spring-guides/gs-accessing-data-mysql>
 - Connect Java to a MySQL Database tutorial: <https://www.baeldung.com/java-connect-mysql>
 - Pass environment variables to Spring Boot application with Maven: <https://stackoverflow.com/a/63853229/13377098>
+- MariaDB (The default implementation of MySQL in Arch Linux): <https://wiki.archlinux.org/title/MariaDB>
 
 ## License
 
