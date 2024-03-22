@@ -1,5 +1,18 @@
 # Taskify
 
+- [Taskify](#taskify)
+  - [Project Structure](#project-structure)
+  - [Technologies Used](#technologies-used)
+  - [Architecture Overview](#architecture-overview)
+    - [Presentation Layer (UI)](#presentation-layer-ui)
+    - [Business Logic Layer](#business-logic-layer)
+    - [Data Access Layer](#data-access-layer)
+    - [Database Layer](#database-layer)
+      - [Database Schema](#database-schema)
+  - [Getting Started](#getting-started)
+  - [References](#references)
+  - [License](#license)
+
 Taskify is a Task Management System developed with Java Spring Boot that provides full CRUD functionality.
 Users can seamlessly create, update, and prioritize tasks through an intuitive user interface. The system
 utilizes the power of Spring Boot to efficiently handle task operations. The application uses an H2 in-memory
@@ -104,23 +117,24 @@ provides JDBC and JPA support.
 
 #### Database Schema
 
-The schema for the H2 database includes a single table named **'Task'** with the following columns:
+The schema for the H2 database includes a single table named **'Task'**. This table stores information about
+individual tasks within the application. Each task has the following attributes:
 
-| key            | type                 | description                                                   |
-| :------------- | :------------------- | ------------------------------------------------------------- |
-| id             | BIGINT (Primary Key) | Unique identifier for each task.                              |
-| title          | VARCHAR(255)         | Descriptive title of the task.                                |
-| description    | VARCHAR(1000)        | Additional details or notes related to the task.              |
-| created_date   | TIMESTAMP            | Timestamp indicating when the task was created.               |
-| completed_date | TIMESTAMP            | Timestamp indicating when the task was completed.             |
-| completed      | Boolean              | Boolean flag indicating whether the task is completed or not. |
+| Column Name    | type          | description                                                     | Not Null | Primary Key |
+| :------------- | :------------ | --------------------------------------------------------------- | -------- | ----------- |
+| id             | BIGINT        | Unique identifier for each task. (auto-incrementing)            | YES      | YES         |
+| title          | VARCHAR(255)  | Descriptive title of the task.                                  | YES      |             |
+| description    | VARCHAR(1000) | Additional details or notes related to the task.                | NO       |             |
+| created_date   | TIMESTAMP     | Timestamp of when the task was created. (automatically set)     | YES      |             |
+| completed_date | TIMESTAMP     | Timestamp of when the task was completed.                       | NO       |             |
+| completed      | BOOLEAN       | Tracks whether the task has been completed (defaults to false). | YES      |             |
 
 ## Getting Started
 
 To run the Taskify application locally, follow these steps:
 
 1. Clone this project or  repository.
-2. Navigate to the project directory: `cd taskify`
+2. Navigate to the project directory: `cd Taskify`
 3. Run the application: `./mvnw spring-boot:run`
 
 The application will be accessible at `http://localhost:8080` and the H2 database will be accessible at
