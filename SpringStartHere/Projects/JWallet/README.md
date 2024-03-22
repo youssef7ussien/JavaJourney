@@ -1,5 +1,19 @@
 # JWallet
 
+- [JWallet](#jwallet)
+  - [Project Structure](#project-structure)
+  - [Technologies Used](#technologies-used)
+  - [Architecture Overview](#architecture-overview)
+    - [Business Logic Layer](#business-logic-layer)
+    - [Data Access Layer](#data-access-layer)
+    - [Database Layer](#database-layer)
+      - [Database Schema](#database-schema)
+  - [Getting Started](#getting-started)
+    - [Exposed API Endpoints](#exposed-api-endpoints)
+    - [Application Usage](#application-usage)
+  - [References](#references)
+  - [License](#license)
+
 The JWallet Application is a Java Spring Boot backend project designed to manage Wallet transactions. It
 utilizes the MySQL database and Spring Data JPA. The project follows the MVC pattern and includes unit tests for
 comprehensive testing. The purpose of this project is to demonstrate basic CRUD operations with Spring Data,
@@ -68,7 +82,7 @@ JWallet/
 | **Java**                                      | `<java.version>17</java.version>`            |
 | **Spring Boot**                               | `<version>3.2.3</version>`                   |
 | **Spring Data JPA**                           | `<version>{Let it for Spring Boot}<version>` |
-| **MySql database**                            | `11.3.2-MariaDB (For Arch Linux user)`       |
+| **MySql database**                            | `11.3.2-MariaDB (For Arch Linux users)`       |
 | **mysql-connector-j** (MySQL Driver for Java) | `<version>{Let it for Spring Boot}<version>` |
 | **Maven** (for dependency management)         | `<modelVersion>4.0.0</modelVersion>`         |
 
