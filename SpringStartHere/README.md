@@ -39,7 +39,7 @@ To broaden your Spring knowledge, consider exploring these additional resources:
 ## Disclaimer
 
 The code snippets and summaries in this repository are for educational purposes only and some of it from
-["Spring Start here"](https://www.manning.com/books/spring-start-here). They may not be represent perfect or
+["Spring Start here"](https://www.manning.com/books/spring-start-here). They may not be represent perfect and 
 Always refer to the official Spring documentation for the most up-to-date information and best practices: <https://docs.spring.io/spring-framework/reference/index.html>
 
 ***Enjoy the Spring learning journey!***
