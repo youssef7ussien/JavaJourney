@@ -6,7 +6,7 @@ INSERT INTO users (username, balance) VALUES
 ('h2_user_02', 500.00),
 ('h2_user_03', 2000.00),
 ('h2_user_04', 32340.00),
-('h2_user_05', 45.5);
+('h2_user_05', 45.5),
 ('h2_user_06', 500.00),
 ('h2_user_07', 2800.00),
 ('h2_user_08', 32340.00),

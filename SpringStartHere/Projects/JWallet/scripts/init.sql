@@ -28,7 +28,7 @@ INSERT INTO users (username, balance) VALUES
 ('mysql_user_02', 500.00),
 ('mysql_user_03', 2000.00),
 ('mysql_user_04', 32340.00),
-('mysql_user_05', 45.5);
+('mysql_user_05', 45.5),
 ('mysql_user_06', 500.00),
 ('mysql_user_07', 2800.00),
 ('mysql_user_08', 32340.00),
