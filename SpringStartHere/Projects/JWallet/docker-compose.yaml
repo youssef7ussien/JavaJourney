@@ -13,7 +13,7 @@ services:
     restart: on-failure
 
   db:
-    image: mysql:latest
+    image: mysql:9.0.0
     environment:
       MYSQL_DATABASE: jwallet_db
       MYSQL_ROOT_PASSWORD: rootpass
