@@ -1,22 +1,147 @@
 # JWallet
 
-- [JWallet](#jwallet)
-  - [Project Structure](#project-structure)
-  - [Technologies Used](#technologies-used)
-  - [Architecture Overview](#architecture-overview)
-    - [Business Logic Layer](#business-logic-layer)
-    - [Data Access Layer](#data-access-layer)
-    - [Database Layer](#database-layer)
-      - [Database Schema](#database-schema)
-  - [Getting Started](#getting-started)
-    - [Exposed API Endpoints](#exposed-api-endpoints)
-    - [Application Usage](#application-usage)
-  - [References](#references)
+The JWallet application is a Java Spring Boot project designed to facilitate the management of wallet
+transactions. The JWallet project is a practical application based on the "**Spring Start Here by Laurentiu
+Spilca**: <https://www.manning.com/books/spring-start-here>" and serves to demonstrate the use of Spring Boot
+for the construction of a web application with Spring MVC, Spring Data JPA for database interactions, and
+Maven for project management.
 
-The JWallet Application is a Java Spring Boot backend project designed to manage Wallet transactions. It
-utilizes the MySQL database and Spring Data JPA. The project follows the MVC pattern and includes unit tests for
-comprehensive testing. The purpose of this project is to demonstrate basic CRUD operations with Spring Data,
-unit testing, and showcase exception handling techniques.
+JWallet is configured to work with a MySQL database, includes Docker support for containerization, and Swagger
+API for documentation. Additionally, it employs a multi-profile approach for different environments
+(development and production).
+
+## Technology Stack
+
+- **Spring Boot**: Framework for building production-ready applications.
+- **Spring MVC**: Web framework for building RESTful APIs and web applications.
+- **Spring Data JPA**: A library for simplifying data access and management using Java Persistence API (JPA),
+  offering a repository-based approach to interact with databases.
+- **Spring Boot DevTools**: A set of tools that provide an enhanced development experience with features like
+  automatic restarts, live reload, and configurations for fast feedback during development.
+- **Maven**: Build automation tool that manages project builds, and dependencies.
+- **Lombok**: A Java library that helps reduce boilerplate code by generating commonly used methods.
+- **MySQL**: Relational database (for production).
+- **H2**: In-memory database (for development).
+- **Swagger API**: A powerful tool for documenting and designing RESTful APIs.
+- **Docker**: Containerization platform.
+
+## Profiles
+
+The project uses different Spring and Maven (see [`pom.xml`](./pom.xml)) profiles to manage configurations for
+development and production environments:
+
+### Development Profile (`dev`)
+
+- **Database**: Uses H2 in-memory database.
+- **Configuration**: Development-specific settings, including Spring Boot DevTools for automatic restarts and live reload.
+- **Properties File**: [`src/main/resources/application-dev.properties`](./src/main/resources/application-dev.properties)
+
+### Production Profile (`prod`)
+
+- **Database**: Connects to MySQL database.
+- **Configuration**: Production-specific settings, ensuring optimal performance and security.
+- **Properties File**: [`src/main/resources/application-prod.properties`](./src/main/resources/application-prod.properties)
+- Default Profile.
+
+## Getting Started
+
+To get started with the JWallet, follow these steps:
+
+1. **Clone this project or repository.**
+2. **Run with Docker Compose:** (by default `prod` profile is running)
+   - Navigate to the project directory and run the following command:
+
+   ```bash
+   docker compose up
+   ```
+
+3. **Accessing the Application**:
+   - The application will be accessible at <http://localhost:8080>.
+   - Swagger API at <http://localhost:8080/api-ui.html>.
+   - API endpoints exposed at <http://localhost:8080/api/>.
+
+## Build and Debug
+
+### Build
+
+1. **Navigate to the Source Code Directory**.
+2. **Build and Run the Application (without Docker)**:
+
+   1. **For development Profile (`dev`)**:
+
+      ```bash
+      ./mvnw -Pdev spring-boot:run -Dspring-boot.run.profiles=dev
+      ```
+
+   1. **For Production Profile (`prod`)**:
+      - Ensure the MySQL database server is running.
+      - Use the following command, replacing `{your_datasource_url}`, `{your_datasource_username}`, and
+        `{your_datasource_password}` with your actual MySQL server details:
+
+      ```bash
+      ./mvnw -Pprod spring-boot:run -Dspring-boot.run.profiles=prod -Dspring-boot.run.arguments="
+          --SPRING_DATASOURCE_URL={your_datasource_url}
+          --SPRING_DATASOURCE_USERNAME={your_datasource_username}
+          --SPRING_DATASOURCE_PASSWORD={your_datasource_password}
+      "
+      ```
+
+### Debug
+
+To debug this project using [VSCodium](https://vscodium.com/) (Open Source Binaries of VS Code) editor:
+
+1. **Create a `launch.json` File:**
+   1. Navigate to the `.vscode` directory in your project's root (create it if it doesn't exist).
+   2. Add the following configuration:
+
+      ```json
+      {
+          "configurations": [
+              {
+                  "type": "java",
+                  "name": "SpringBoot (Dev)",
+                  "request": "launch",
+                  "cwd": "${workspaceFolder}",
+                  "mainClass": "com.project.jwallet.Main",
+                  "projectName": "jwallet",
+                  "env": {
+                      "SPRING_PROFILES_ACTIVE": "dev"
+                  }
+              },
+              {
+                  "type": "java",
+                  "name": "SpringBoot (Prod)",
+                  "request": "launch",
+                  "cwd": "${workspaceFolder}",
+                  "mainClass": "com.project.jwallet.Main",
+                  "projectName": "jwallet",
+                  "env": {
+                      "SPRING_PROFILES_ACTIVE": "prod",
+                      "SPRING_DATASOURCE_URL": "{your_datasource_url}",
+                      "SPRING_DATASOURCE_USERNAME": "{your_datasource_username}",
+                      "SPRING_DATASOURCE_PASSWORD": "{your_datasource_password}",
+                  }
+              }
+          ]
+      }
+      ```
+
+      - Replace `{your_datasource_url}`, `{your_datasource_username}`, and `{your_datasource_password}` with
+        your actual MySQL server details for the production configuration.
+2. **Set Maven Profile in VSCodium:**
+   - Open Command Palette (`Ctrl+Shift+P`).
+   - Search for `Java: Open Project Settings`.
+   - Navigate to `Maven > Set your profile` and select the profile you want to debug.
+3. **Start Debugging:**
+   - Select the desired debug configuration (e.g., `SpringBoot (Dev)`) and start debugging by clicking the green play button or pressing `F5`.
+
+### Run Tests
+
+To run the unit and integration tests, use the following Maven command:
+
+```bash
+./mvnw clean test
+```
 
 ## Project Structure
 
@@ -28,13 +153,14 @@ JWallet/
     ├── main/
     │   ├── java/
     │   │   └── com/
-    │   │       └── example/
-    │   │           └── wallet/
+    │   │       └── project/
+    │   │           └── jwallet/
     │   │               ├── config/
     │   │               │   └── ProjectConfig.java
     │   │               ├── controllers/ # Contains controller classes for handling HTTP requests
     │   │               │   ├── advice/
     │   │               │   │   └── GlobalExceptionHandle.java
+    │   │               │   ├── HomeController.java
     │   │               │   ├── TransactionController.java
     │   │               │   └── UserController.java
     │   │               ├── dto/ # Data Transfer Objects used for transferring data between layers
@@ -46,7 +172,6 @@ JWallet/
     │   │               │   ├── InsufficientBalanceException.java
     │   │               │   ├── TransactionNotFoundException.java
     │   │               │   └── UserNotFoundException.java
-    │   │               ├── Main.java
     │   │               ├── models/ # Entity classes representing project data
     │   │               │   ├── ErrorDetails.java
     │   │               │   ├── Transaction.java
@@ -54,36 +179,28 @@ JWallet/
     │   │               ├── repositories/ # Contains repository interfaces for database operations
     │   │               │   ├── TransactionRepository.java
     │   │               │   └── UserRepository.java
-    │   │               └── services/ # Contains service classes for business logic
-    │   │                   ├── TransactionServiceImpl.java
-    │   │                   ├── TransactionService.java
-    │   │                   ├── UserServiceImpl.java
-    │   │                   └── UserService.java
+    │   │               ├── services/ # Contains service classes for business logic
+    │   │               │   ├── TransactionServiceImpl.java
+    │   │               │   ├── TransactionService.java
+    │   │               │   ├── UserServiceImpl.java
+    │   │               │   └── UserService.java
+    │   │               └── Main.java
     │   └── resources/
+    │       ├── static/
+    │       ├── templates/
+    │       ├── application-dev.properties
+    │       ├── application-prod.properties
     │       ├── application.properties
-    │       ├── data.sql
-    │       ├── schema.sql
+    │       └── data.sql
     └── test/
         └── java/
             └── com/
-                └── example/
-                    └── wallet/
+                └── project/
+                    └── jwallet/
                         └── services/ # Contains unit tests for repository layer
                             ├── TransactionServiceImplTest.java
                             └── UserServiceImplTest.java
-
 ```
-
-## Technologies Used
-
-| Name                                          | Version                                      |
-| --------------------------------------------- | -------------------------------------------- |
-| **Java**                                      | `<java.version>17</java.version>`            |
-| **Spring Boot**                               | `<version>3.2.4</version>`                   |
-| **Spring Data JPA**                           | `<version>{Let it for Spring Boot}<version>` |
-| **MySql database**                            | `11.3.2-MariaDB (For Arch Linux users)`      |
-| **mysql-connector-j** (MySQL Driver for Java) | `<version>{Let it for Spring Boot}<version>` |
-| **Maven** (for dependency management)         | `<modelVersion>4.0.0</modelVersion>`         |
 
 ## Architecture Overview
 
@@ -139,135 +256,26 @@ This table stores information about all the financial transactions that occur wi
 | amount      | DECIMAL(19, 2) | Amount of money transferred in the transaction                    | YES      |             |             |
 | created_at  | TIMESTAMP      | Timestamp of when the transaction was created (automatically set) | YES      |             |             |
 
-## Getting Started
-
-To run the JWallet application locally, follow these steps:
-
-1. Clone this project or repository.
-2. Run MySql server and create your database.
-3. Navigate to the project directory: `cd JWallet`
-4. Run the application:
-
-    ```bash
-    ./mvnw spring-boot:run \
-        -Dspring-boot.run.arguments="
-        --SPRING_DATASOURCE_URL={your_spring_datasource_url}
-        --SPRING_DATASOURCE_USERNAME={your_spring_datasource_username}
-        --SPRING_DATASOURCE_PASSWORD={your_spring_datasource_password}
-    "
-    ```
-
-    If you want to debug this project using the VSCodium (Open Source Binaries of VS Code) editor, you will
-    need to create a `luanch.json` file and add the following code to it:
-
-    ```json
-    {
-        // ...
-        "configurations": [
-            {
-                "name": "SpringBoot",
-                "type": "java",
-                "request": "launch",
-                "mainClass": "com.example.wallet.Main", // add your main class.
-                "env": {
-                    "SPRING_DATASOURCE_USERNAME": "{your_spring_datasource_username}"
-                    "SPRING_DATASOURCE_PASSWORD": "{your_spring_datasource_password}"
-                    "SPRING_DATASOURCE_URL": "{your_spring_datasource_url}"
-                },
-            },
-        ]
-        // ...
-    }
-    ```
-
-    Make sure to replace `{your_spring_datasource_url}`, `{your_spring_datasource_username}`, and
-    `{your_spring_datasource_password}` with your actual MySQL server values.
-
-The application will be accessible by default at `http://localhost:8080`.
-
-### Exposed API Endpoints
-
-- **Users**
-  - `POST /users`: Create a new user.
-  - `GET /users/{id}`: Get a user by ID.
-  - `GET /users/username/{username}`: Get a user by username.
-  - `GET /users`: Get all users.
-
-- **Transactions**
-  - `POST /transactions`: Create a new transaction.
-  - `GET /transactions/{id}`: Get a transaction by ID.
-  - `GET /transactions/user/{userId}`: Get all transactions for a user.
-  - `GET /transactions/`: Get all transactions.
-
-### Application Usage
-
-Here are examples of using the JWallet API with [cURL](https://curl.se/) and using
-[jq](https://github.com/jqlang/jq) to get a nice output format:
-
-```sh
-# Create new user
-curl -X POST http://localhost:8080/api/users \
--H 'Content-Type: application/json' \
--d '{
-    "username": "readme_user", 
-    "balance": 1000.00 
-}' \
--s | jq
-
-
-# Get specific user by id
-curl http://localhost:8080/api/users/1 -s | jq
-
-
-# Or get user by username
-curl http://localhost:8080/api/users/username/readme_user -s | jq
-
-
-# Get all users
-curl http://localhost:8080/api/users -s | jq
-
-
-# Transfer balance with amount = 500 from user with id = 1 to user with id = 2
-# first check current balance in two users
-curl http://localhost:8080/api/users/1 -s | jq
-curl http://localhost:8080/api/users/2 -s | jq
-
-
-# Transfer money
-curl -X POST http://localhost:8080/api/transactions/transfer \
--H 'Content-Type: application/json' \
--d '{
-    "senderId": 1, 
-    "receiverId": 2,
-    "amount": 200
-}' \
--s | jq
-
-# then check current balance in two users
-curl http://localhost:8080/api/users/1 -s | jq
-curl http://localhost:8080/api/users/2 -s | jq
-
-
-# Get specific transaction by id
-curl http://localhost:8080/api/transactions/1 -s | jq
-
-
-# Or get transactions for specific user by id 
-curl http://localhost:8080/api/transactions/user/1 -s | jq
-
-
-# Get all transactions
-curl http://localhost:8080/api/transactions -s | jq
-```
-
 ## References
 
-- Spring Docs: <https://docs.spring.io/spring-framework/reference/index.html>
-- Accessing data with MySQL (Spring Docs): <https://spring.io/guides/gs/accessing-data-mysql>
-  - Github for source code: <https://github.com/spring-guides/gs-accessing-data-mysql>
-- Connect Java to a MySQL Database tutorial: <https://www.baeldung.com/java-connect-mysql>
-- Pass environment variables to Spring Boot application with Maven: <https://stackoverflow.com/a/63853229/13377098>
-- MariaDB (The default implementation of MySQL in Arch Linux): <https://wiki.archlinux.org/title/MariaDB>
+- **Spring Docs:** <https://docs.spring.io/spring-framework/reference/index.html>
+- **Database:**
+  - Database Initialization (Spring Docs): <https://docs.spring.io/spring-boot/how-to/data-initialization.html>
+  - Accessing data with MySQL (Spring Docs): <https://spring.io/guides/gs/accessing-data-mysql>
+    - Github for source code: <https://github.com/spring-guides/gs-accessing-data-mysql>
+  - Connect Java to a MySQL Database tutorial (Baeldung): <https://www.baeldung.com/java-connect-mysql>
+  - Spring Boot With H2 Database (Baeldung): <https://www.baeldung.com/spring-boot-h2-database>
+  - Spring Boot with H2 Database (HowToDoInJava): <https://howtodoinjava.com/spring-boot/h2-database-example>
+- **SpringDoc (Swagger):**
+  - OpenAPI 3 Library for spring-boot: <https://springdoc.org/#getting-started>
+  - Spring Boot 3 OpenAPI Docs with Springdoc and Swagger (HowToDoInJava): <https://howtodoinjava.com/spring-boot/springdoc-openapi-rest-documentation>
+- **Spring DevTool:**
+  - Developer Tools (Spring Docs): <https://docs.spring.io/spring-boot/reference/using/devtools.html>
+  - Overview of Spring Boot Dev (Baeldung): <https://www.baeldung.com/spring-boot-devtools>
+- **Run and Debug:**
+  - Running Application with Maven (Spring Docs): <https://docs.spring.io/spring-boot/maven-plugin/run.html>
+  - Debugging Spring Applications (Baeldung): <https://www.baeldung.com/spring-debugging>
+  - Pass environment variables to Spring Boot application with Maven: <https://stackoverflow.com/a/63853229/13377098>
 
 ## License
 
