@@ -78,13 +78,13 @@ To get started with the JWallet, follow these steps:
       - Use the following command, replacing `{your_datasource_url}`, `{your_datasource_username}`, and
         `{your_datasource_password}` with your actual MySQL server details:
 
-      ```bash
-      ./mvnw -Pprod spring-boot:run -Dspring-boot.run.profiles=prod -Dspring-boot.run.arguments="
-          --SPRING_DATASOURCE_URL={your_datasource_url}
-          --SPRING_DATASOURCE_USERNAME={your_datasource_username}
-          --SPRING_DATASOURCE_PASSWORD={your_datasource_password}
-      "
-      ```
+        ```bash
+        ./mvnw -Pprod spring-boot:run -Dspring-boot.run.profiles=prod -Dspring-boot.run.arguments="
+            --SPRING_DATASOURCE_URL={your_datasource_url}
+            --SPRING_DATASOURCE_USERNAME={your_datasource_username}
+            --SPRING_DATASOURCE_PASSWORD={your_datasource_password}
+        "
+        ```
 
 ### Debug
 
